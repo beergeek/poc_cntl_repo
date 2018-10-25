@@ -120,7 +120,7 @@ class profile::mom (
 
   pe_node_group { 'MoM Server':
     parent  => 'Classification Node Groups',
-    rule    => ["and",["=","clientcert","mom.puppet.vm"]],
+    rule    => ["or",["=","name","mom.puppet.vm"]],
     classes => {
       role::mom_server => {},
     }

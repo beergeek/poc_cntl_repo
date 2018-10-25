@@ -2,4 +2,10 @@
 
 profile::pipelines::pipeline_type:
   - 'cd4pe'
+profile::pipelines::cd4pe_env_params:
+  - 'DB_USER=cd4pe'
+  - 'DB_PASS=P@ssword123'
+  - 'DB_ENDPOINT=mysql://10.99.99.12:3306/cd4pe'
+  - 'PFI_SECRET_KEY=g4vmW6D43Qw5CNT+72rBDw=='
+  - 'DUMP_URI=dump://localhost:7000'
 profile::pipelines::run_artifactory: true

@@ -37,7 +37,6 @@ mod "puppetlabs/inifile", :latest
 mod "puppetlabs/java_ks", :latest
 mod "puppetlabs/java", :latest
 mod "puppetlabs/mysql", :latest
-mod "puppetlabs/nagios_core", :latest
 mod "puppetlabs/ntp", :latest
 mod "puppetlabs/pe_gem", :latest
 mod "puppetlabs/postgresql", :latest

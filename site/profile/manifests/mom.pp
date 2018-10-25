@@ -9,6 +9,7 @@ class profile::mom (
   Profile::Cron_wd      $backup_cron_weekday     = '*',
   String                $autosign_loglevel       = 'INFO',
   String                $autosign_validity       = '7200',
+  String                $pe_infra_master         = $server_facts['servername'],
   Boolean               $enable_firewall         = true,
   Optional[String]      $hiera_eyaml_priv        = undef,
   Optional[String]      $hiera_eyaml_pub         = undef,
@@ -66,6 +67,87 @@ class profile::mom (
     path    => '/etc/puppetlabs/puppetserver/conf.d/file-sync.conf',
     setting => 'file-sync.repos.dump.auto-commit',
     value   => true,
+  }
+
+  pe_node_group { ['Classification Node Groups', 'Environmental Node Groups']:
+    parent          => '00000000-0000-4000-8000-000000000000',
+    refresh_classes => true,
+    classes         => {},
+  }
+
+  pe_node_group { 'Production environment':
+    parent => 'Environmental Node Groups',
+    rule    => ["and",["not",["=",["trusted","extensions","pp_environment"],"staging"]],["not",["=",["trusted","extensions","pp_environment"],"test"]],["not",["=",["trusted","extensions","pp_environment"],"development"]]],
+    classes => {},
+  }
+
+  pe_node_group { 'Staging environment':
+    parent => 'Environmental Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_environment"],"staging"]],
+    classes => {},
+  }
+
+  pe_node_group { 'Test environment':
+    parent => 'Environmental Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_environment"],"test"]],
+    classes => {},
+  }
+
+  pe_node_group { 'Development environment':
+    parent => 'Environmental Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_environment"],"development"]],
+    classes => {},
+  }
+
+  pe_node_group { 'Agent-specified environment':
+    parent => 'Environmental Node Groups',
+  }
+
+  pe_node_group { 'PE Infrastructure':
+    parent  => 'Classification Node Groups',
+    refresh_classes => true,
+    classes => {
+      'puppet_enterprise' => {
+        'certificate_authority_host' => $pe_infra_master,
+        'puppet_master_host'         => $pe_infra_master,
+        'console_host'               => $pe_infra_master,
+        'puppetdb_host'              => $pe_infra_master,
+        'database_host'              => $pe_infra_master,
+        'pcp_broker_host'            => $pe_infra_master,
+      }
+    },
+  }
+
+  pe_node_group { 'MoM Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=","clientcert","mom.puppet.vm"]],
+    classes => {
+      role::mom_server => {},
+    }
+  }
+
+  pe_node_group { 'Com Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_role"],"com_server"]],
+    classes => {
+      role::com_server => {},
+    }
+  }
+
+  pe_node_group { 'CD4PE Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_role"],"cd4pe_server"]],
+    classes => {
+      role::cd4pe_server => {},
+    }
+  }
+
+  pe_node_group { 'Discovery Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_role"],"discovery_server"]],
+    classes => {
+      role::discovery_server => {},
+    }
   }
 
   cron { 'puppet_backup':

@@ -76,27 +76,31 @@ class profile::mom (
   }
 
   pe_node_group { 'Production environment':
-    parent => 'Environmental Node Groups',
-    rule    => ["and",["not",["=",["trusted","extensions","pp_environment"],"staging"]],["not",["=",["trusted","extensions","pp_environment"],"test"]],["not",["=",["trusted","extensions","pp_environment"],"development"]]],
-    classes => {},
+    parent             => 'Environmental Node Groups',
+    environment_trumps => true,
+    rule               => ["and",["not",["=",["trusted","extensions","pp_environment"],"staging"]],["not",["=",["trusted","extensions","pp_environment"],"test"]],["not",["=",["trusted","extensions","pp_environment"],"development"]]],
+    classes            => {},
   }
 
   pe_node_group { 'Staging environment':
-    parent => 'Environmental Node Groups',
-    rule    => ["and",["=",["trusted","extensions","pp_environment"],"staging"]],
-    classes => {},
+    parent             => 'Environmental Node Groups',
+    environment_trumps => true,
+    rule               => ["and",["=",["trusted","extensions","pp_environment"],"staging"]],
+    classes            => {},
   }
 
   pe_node_group { 'Test environment':
-    parent => 'Environmental Node Groups',
-    rule    => ["and",["=",["trusted","extensions","pp_environment"],"test"]],
-    classes => {},
+    parent             => 'Environmental Node Groups',
+    environment_trumps => true,
+    rule               => ["and",["=",["trusted","extensions","pp_environment"],"test"]],
+    classes            => {},
   }
 
   pe_node_group { 'Development environment':
-    parent => 'Environmental Node Groups',
-    rule    => ["and",["=",["trusted","extensions","pp_environment"],"development"]],
-    classes => {},
+    parent             => 'Environmental Node Groups',
+    environment_trumps => true,
+    rule               => ["and",["=",["trusted","extensions","pp_environment"],"development"]],
+    classes            => {},
   }
 
   pe_node_group { 'Agent-specified environment':
@@ -119,9 +123,10 @@ class profile::mom (
   }
 
   pe_node_group { 'MoM Server':
-    parent  => 'Classification Node Groups',
-    rule    => ["or",["=","name","mom.puppet.vm"]],
-    classes => {
+    parent             => 'Classification Node Groups',
+    pinned             => ["mom.puppet.vm"],
+    rule               => {},
+    classes            => {
       role::mom_server => {},
     }
   }

@@ -1,0 +1,22 @@
+---
+
+:backends:
+<% @hiera_backends.each do |backend,details| -%>
+  - <%= backend %>
+<% end -%>
+
+:hierarchy:
+<% @hiera_hierarchy.each do |level| -%>
+<% if level.include? "%" -%>
+  - "<%= level %>"
+<% else -%>
+  - <%= level %>
+<% end -%>
+<% end -%>
+
+<% @hiera_backends.each do |backend,details| -%>
+:<%= backend %>:
+<% details.each do |key,value| -%>
+  :<%= key %>: "<%= value %>"
+<% end -%>
+<% end -%>

@@ -1,0 +1,15 @@
+---
+
+profile::pipelines::pipeline_type:
+  - 'pfa'
+  - 'cd4pe'
+  - 'pfc'
+profile::pipelines::pfc_ports:
+  - '8083:8080'
+  - '8003:8000'
+  - '7003:7000'
+profile::pipelines::cd4pe_ports:
+  - '8082:8080'
+  - '8002:8000'
+  - '7002:7000'
+profile::pipelines::run_artifactory: true

@@ -1,0 +1,15 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+  
+# DATABASE_SERVICES
+profile::database_services::mysql::enable_firewall: *enable_firewall
+profile::database_services::mysql::mysql_server_override_options:
+  override_options:
+    mysqld:
+      bind-address: '0.0.0.0'
+      default-storage-engine: 'INNODB'
+      max_allowed_packet: '2G'
+

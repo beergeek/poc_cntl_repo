@@ -1,0 +1,98 @@
+---
+
+# Variables
+variables:
+  - &enable_firewall true
+
+profile::repos::repo_hash:
+  mysql57-community:
+    name: 'MySQL 5.7 Community Server'
+    baseurl: 'http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/'
+    enabled: 0
+    gpgcheck: 1
+    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql'
+profile::database_services::mysql::enable_firewall: *enable_firewall
+profile::database_services::mysql::mysql_server_override_data:
+  package_name: 'mysql-community-server'
+  package_ensure: 'installed'
+  root_password: 'P@ssword123'
+  manage_config_file: true
+  service_name: 'mysqld'
+  override_options:
+    mysqld:
+      bind-address: '0.0.0.0'
+      default-storage-engine: 'INNODB'
+      max_allowed_packet: '2G'
+profile::database_services::mysql::db_hash:
+  jiradb:
+    ensure: present
+    user: jira
+    password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAQ9eNIMTW/aAJTq99AUjXQrer122d+bneNJrN
+      aTiKU8NHz4udLPCdiatz0+E6zP5dJNwBB7V3mBMb/hqufT1IC2g30wOT/I+O
+      Fu+aQD0i0HaH7oP+8N0tu1XKiXjIpxSqO4UC9LHt40J11xktqdtch3lW7WwG
+      y55BeCknc8OlHSUiXyKbxZ9G+LUIr8vVuzfj/cwVLGC6ZMi30Ya8EnxiUDcW
+      F/cvGiWEvSd0gWTBwq6RFTmI3MjU+COEqfHAo1dP70p//W9nHswAyauFWvvM
+      jGCCIBfHR3QoZ5Qy+2gSRzNqv+y3v7b5GExlqwA7YqcHabR7xwCHug74mkK/
+      3PaNPjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCl1zIHRlLu8zCHQdgq
+      ULi8gBDxGxfs6NFhbKtVP6H4ZZM4]
+    charset: 'utf8'
+    host: 'jira.puppet.vm'
+    collate: 'utf8_bin'
+    grant:
+      - 'ALL'
+  pfa:
+    ensure: present
+    user: pfa
+    host: 'pfa.puppet.vm'
+    password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAlO8CbnAjbArOzt346rIpR+tXw3F34R1MNhLa
+      HuXaQlQSSn/vDBg1TYkK1GhmaGHJP2vT5F3Vx0PiKhfgZHIkvTDOojgyRBjv
+      r0GoK5wo4M3yWpg8cSUPEkX0xbS12xYS3ocZINE2S5wbtqRCsQ+m9z9Ufy5E
+      kh1FxHgLg6MRfnAtCAjQp9a8R9NpQ74DU5kKacV7a+i6ChkemK3dx+hI7slS
+      hFlHboVXv0JP98wkPUnmw97YxjQ8nYAY+UvKnfR9Wcs9/tZPMLPcDYf5ZhWl
+      6krgxy/4DV6IWVlfInjXALjM82+HfrdrJT+/M/QbM/Nlg5xEQ7CSLRaU9ZeZ
+      gpcV5DA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPiv0Hlfmiy2U1gPWK
+      gg2LgBB1cmwEDaqEpPE2FNnBSlSn]
+    charset: 'latin1'
+    collate: 'latin1_general_ci'
+    grant:
+      - 'ALL'
+  cd4pe:
+    ensure: present
+    user: cd4pe
+    host: 'pfa.puppet.vm'
+    password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAlO8CbnAjbArOzt346rIpR+tXw3F34R1MNhLa
+      HuXaQlQSSn/vDBg1TYkK1GhmaGHJP2vT5F3Vx0PiKhfgZHIkvTDOojgyRBjv
+      r0GoK5wo4M3yWpg8cSUPEkX0xbS12xYS3ocZINE2S5wbtqRCsQ+m9z9Ufy5E
+      kh1FxHgLg6MRfnAtCAjQp9a8R9NpQ74DU5kKacV7a+i6ChkemK3dx+hI7slS
+      hFlHboVXv0JP98wkPUnmw97YxjQ8nYAY+UvKnfR9Wcs9/tZPMLPcDYf5ZhWl
+      6krgxy/4DV6IWVlfInjXALjM82+HfrdrJT+/M/QbM/Nlg5xEQ7CSLRaU9ZeZ
+      gpcV5DA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPiv0Hlfmiy2U1gPWK
+      gg2LgBB1cmwEDaqEpPE2FNnBSlSn]
+    charset: 'latin1'
+    collate: 'latin1_general_ci'
+    grant:
+      - 'ALL'
+  pfc:
+    ensure: present
+    user: pfc
+    host: 'pfa.puppet.vm'
+    password: >
+      ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+      DQYJKoZIhvcNAQEBBQAEggEAlO8CbnAjbArOzt346rIpR+tXw3F34R1MNhLa
+      HuXaQlQSSn/vDBg1TYkK1GhmaGHJP2vT5F3Vx0PiKhfgZHIkvTDOojgyRBjv
+      r0GoK5wo4M3yWpg8cSUPEkX0xbS12xYS3ocZINE2S5wbtqRCsQ+m9z9Ufy5E
+      kh1FxHgLg6MRfnAtCAjQp9a8R9NpQ74DU5kKacV7a+i6ChkemK3dx+hI7slS
+      hFlHboVXv0JP98wkPUnmw97YxjQ8nYAY+UvKnfR9Wcs9/tZPMLPcDYf5ZhWl
+      6krgxy/4DV6IWVlfInjXALjM82+HfrdrJT+/M/QbM/Nlg5xEQ7CSLRaU9ZeZ
+      gpcV5DA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCPiv0Hlfmiy2U1gPWK
+      gg2LgBB1cmwEDaqEpPE2FNnBSlSn]
+    charset: 'latin1'
+    collate: 'latin1_general_ci'
+    grant:
+      - 'ALL'

@@ -1,0 +1,358 @@
+{
+  "name": "win-kckn7rld4q3.ap-southeast-2.compute.internal",
+  "trusted": {
+    "pp_role" : "web_server"
+  },
+  "values": {
+    "aio_agent_build": "5.5.3",
+    "aio_agent_version": "5.5.3",
+    "architecture": "x64",
+    "archive_windir": "C:\\ProgramData\\staging",
+    "choco_install_path": "C:\\ProgramData\\chocolatey",
+    "chocolateyversion": "0",
+    "common_appdata": "C:\\ProgramData",
+    "dhcp_servers": {
+      "Ethernet 2": "192.168.0.33",
+      "system": "192.168.0.33"
+    },
+    "dmi": {
+      "manufacturer": "Xen",
+      "product": {
+        "name": "HVM domU",
+        "serial_number": "ec258845-c78e-e2bc-2106-837afc4f0690"
+      }
+    },
+    "domain": "ap-southeast-2.compute.internal",
+    "ec2_metadata": {
+      "ami-id": "ami-06f2dbd8cdf99fd40",
+      "ami-launch-index": "0",
+      "ami-manifest-path": "(unknown)",
+      "block-device-mapping": {
+        "ami": "/dev/sda1",
+        "root": "/dev/sda1"
+      },
+      "events": {
+        "maintenance": {
+          "history": "[]",
+          "scheduled": "[]"
+        }
+      },
+      "hostname": "ip-192-168-0-55.ap-southeast-2.compute.internal",
+      "instance-action": "none",
+      "instance-id": "i-004267e1fca7de5e0",
+      "instance-type": "t2.large",
+      "local-hostname": "ip-192-168-0-55.ap-southeast-2.compute.internal",
+      "local-ipv4": "192.168.0.55",
+      "mac": "0a:92:1d:40:24:f2",
+      "metrics": {
+        "vhostmd": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+      },
+      "network": {
+        "interfaces": {
+          "macs": {
+            "0a:92:1d:40:24:f2": {
+              "device-number": "0",
+              "interface-id": "eni-0dc890bcce4dae673",
+              "ipv4-associations": {
+                "13.210.154.243": "192.168.0.55"
+              },
+              "local-hostname": "ip-192-168-0-55.ap-southeast-2.compute.internal",
+              "local-ipv4s": "192.168.0.55",
+              "mac": "0a:92:1d:40:24:f2",
+              "owner-id": "482693910459",
+              "public-hostname": "",
+              "public-ipv4s": "13.210.154.243",
+              "security-group-ids": "sg-08433679ae24d1b41",
+              "security-groups": "beergeek-windows",
+              "subnet-id": "subnet-02a2ab808b31df793",
+              "subnet-ipv4-cidr-block": "192.168.0.32/27",
+              "vpc-id": "vpc-00790fa7bb893f2b0",
+              "vpc-ipv4-cidr-block": "192.168.0.0/24",
+              "vpc-ipv4-cidr-blocks": "192.168.0.0/24"
+            }
+          }
+        }
+      },
+      "placement": {
+        "availability-zone": "ap-southeast-2c"
+      },
+      "profile": "windows-hvm",
+      "public-hostname": "",
+      "public-ipv4": "13.210.154.243",
+      "public-keys": {
+        "0": {
+          "openssh-key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDE+HDSj8nyIMGKE5T2laQnj3YfDP/BtN6PwgGLWQ0gwsSF2JzEagNb3gYBw1vvXyLYRcu8H0NVjiyHrlh1WvIStKOtTkiGgRn2o4+Iybjb78G0RqjWAdlBhLFgulPAfNyVV8c4F5ojbl+EN+5pgVrw+E9kKdIG0q46IKH1C9ays30KqccHewGJ3pm0rI00AtaNW6EA27ZPil9aza6K6q0tOA+IJjH9IBMixRq1leVDdrzzaWI1d4nIVzblWAhh0eDFLhkU2nECsGpaIEDdt4mP7MiwIiQq4r0ODFZ2jAtC291aFacd17pMCegoJxM4K+TlIaf1FVPOR4SOyzCtgMY7 id_beergeek"
+        }
+      },
+      "reservation-id": "r-0ec02dbf9fb0b4bbf",
+      "security-groups": "beergeek-windows",
+      "services": {
+        "domain": "amazonaws.com",
+        "partition": "aws"
+      }
+    },
+    "env_temp_variable": "C:\\Users\\ADMINI~1\\AppData\\Local\\Temp\\2",
+    "env_windows_installdir": "C:\\Program Files\\Puppet Labs\\Puppet",
+    "facterversion": "3.11.2",
+    "fqdn": "WIN-KCKN7RLD4Q3.ap-southeast-2.compute.internal",
+    "gemhome": "C:/Program Files/Puppet Labs/Puppet/sys/ruby/lib/ruby/gems/2.4.0",
+    "hardwareisa": "x64",
+    "hardwaremodel": "x86_64",
+    "hostname": "WIN-KCKN7RLD4Q3",
+    "hypervisors": {
+      "hyperv": {
+      }
+    },
+    "id": "WIN-KCKN7RLD4Q3\\Administrator",
+    "identity": {
+      "privileged": true,
+      "user": "WIN-KCKN7RLD4Q3\\Administrator"
+    },
+    "interfaces": "Ethernet 2",
+    "ipaddress": "192.168.0.55",
+    "ipaddress6": "fe80::4502:463a:4d75:9cbb%12",
+    "ipaddress6_Ethernet 2": "fe80::4502:463a:4d75:9cbb%12",
+    "ipaddress_Ethernet 2": "192.168.0.55",
+    "is_pe": false,
+    "is_virtual": true,
+    "kernel": "windows",
+    "kernelmajversion": "6.3",
+    "kernelrelease": "6.3.9600",
+    "kernelversion": "6.3.9600",
+    "macaddress": "0A:92:1D:40:24:F2",
+    "macaddress_Ethernet 2": "0A:92:1D:40:24:F2",
+    "manufacturer": "Xen",
+    "mco_confdir": "C:/ProgramData/PuppetLabs/mcollective/etc",
+    "memory": {
+      "system": {
+        "available": "7.16 GiB",
+        "available_bytes": 7687249920,
+        "capacity": "10.50%",
+        "total": "8.00 GiB",
+        "total_bytes": 8589524992,
+        "used": "860.48 MiB",
+        "used_bytes": 902275072
+      }
+    },
+    "memoryfree": "7.16 GiB",
+    "memoryfree_mb": 7331.1328125,
+    "memorysize": "8.00 GiB",
+    "memorysize_mb": 8191.609375,
+    "mtu_Ethernet 2": 9001,
+    "mysql_server_id": 7866866,
+    "netmask": "255.255.255.224",
+    "netmask6": "ffff:ffff:ffff:ffff::",
+    "netmask6_Ethernet 2": "ffff:ffff:ffff:ffff::",
+    "netmask_Ethernet 2": "255.255.255.224",
+    "network": "192.168.0.32",
+    "network6": "fe80::%12",
+    "network6_Ethernet 2": "fe80::%12",
+    "network_Ethernet 2": "192.168.0.32",
+    "networking": {
+      "dhcp": "192.168.0.33",
+      "domain": "ap-southeast-2.compute.internal",
+      "fqdn": "WIN-KCKN7RLD4Q3.ap-southeast-2.compute.internal",
+      "hostname": "WIN-KCKN7RLD4Q3",
+      "interfaces": {
+        "Ethernet 2": {
+          "bindings": [
+            {
+              "address": "192.168.0.55",
+              "netmask": "255.255.255.224",
+              "network": "192.168.0.32"
+            }
+          ],
+          "bindings6": [
+            {
+              "address": "fe80::4502:463a:4d75:9cbb%12",
+              "netmask": "ffff:ffff:ffff:ffff::",
+              "network": "fe80::%12"
+            }
+          ],
+          "dhcp": "192.168.0.33",
+          "ip": "192.168.0.55",
+          "ip6": "fe80::4502:463a:4d75:9cbb%12",
+          "mac": "0A:92:1D:40:24:F2",
+          "mtu": 9001,
+          "netmask": "255.255.255.224",
+          "netmask6": "ffff:ffff:ffff:ffff::",
+          "network": "192.168.0.32",
+          "network6": "fe80::%12"
+        }
+      },
+      "ip": "192.168.0.55",
+      "ip6": "fe80::4502:463a:4d75:9cbb%12",
+      "mac": "0A:92:1D:40:24:F2",
+      "mtu": 9001,
+      "netmask": "255.255.255.224",
+      "netmask6": "ffff:ffff:ffff:ffff::",
+      "network": "192.168.0.32",
+      "network6": "fe80::%12",
+      "primary": "Ethernet 2"
+    },
+    "node_count": "Available on Puppet Master/MoM only",
+    "operatingsystem": "windows",
+    "operatingsystemmajrelease": "2012 R2",
+    "operatingsystemrelease": "2012 R2",
+    "os": {
+      "architecture": "x64",
+      "family": "windows",
+      "hardware": "x86_64",
+      "name": "windows",
+      "release": {
+        "full": "2012 R2",
+        "major": "2012 R2"
+      },
+      "windows": {
+        "system32": "C:\\Windows\\system32"
+      }
+    },
+    "os_patching": {
+      "warnings": {
+        "update_file": "Update file not found, update information invalid",
+        "security_update_file": "Security update file not found, update information invalid"
+      },
+      "package_updates": [
+
+      ],
+      "package_update_count": 0,
+      "security_package_updates": [
+
+      ],
+      "security_package_update_count": 0,
+      "blocked": false,
+      "blocked_reasons": [
+
+      ],
+      "blackouts": {
+      },
+      "pinned_packages": [
+
+      ],
+      "last_run": {
+      },
+      "patch_window": "",
+      "reboot_override": "default",
+      "reboots": {
+        "reboot_required": "unknown"
+      }
+    },
+    "osfamily": "windows",
+    "package_provider": "windows",
+    "path": "C:\\Program Files\\Puppet Labs\\Puppet\\facter/bin;C:\\Program Files\\Puppet Labs\\Puppet\\facter/../puppet/bin;C:\\Program Files\\Puppet Labs\\Puppet\\puppet\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\facter\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\hiera\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\mcollective\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\sys\\ruby\\bin;C:\\Program Files\\Puppet Labs\\Puppet\\sys\\tools\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Amazon\\cfn-bootstrap\\;C:\\Program Files\\Puppet Labs\\Puppet\\bin",
+    "pe_concat_basedir": "C:/ProgramData/PuppetLabs/puppet/cache/pe_concat",
+    "physicalprocessorcount": 1,
+    "platform_symlink_writable": false,
+    "powershell_version": "4.0",
+    "processor0": "Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz",
+    "processorcount": 2,
+    "processors": {
+      "count": 2,
+      "isa": "x64",
+      "models": [
+        "Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz"
+      ],
+      "physicalcount": 1
+    },
+    "productname": "HVM domU",
+    "puppet_agent_appdata": "C:\\ProgramData",
+    "puppet_agent_pid": 824,
+    "puppet_client_datadir": "C:/ProgramData/PuppetLabs/puppet/cache/client_data",
+    "puppet_confdir": "C:/ProgramData/PuppetLabs/puppet/etc",
+    "puppet_config": "C:/ProgramData/PuppetLabs/puppet/etc/puppet.conf",
+    "puppet_environmentpath": "C:/ProgramData/PuppetLabs/code/environments",
+    "puppet_files_dir_present": false,
+    "puppet_inventory_metadata": {
+      "packages": {
+        "collection_enabled": false,
+        "last_collection_time": "0.0s"
+      }
+    },
+    "puppet_master_server": "puppet.puppet.vm",
+    "puppet_server": "puppet.puppet.vm",
+    "puppet_ssldir": "C:/ProgramData/PuppetLabs/puppet/etc/ssl",
+    "puppet_sslpaths": {
+      "privatedir": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/private",
+        "path_exists": true
+      },
+      "privatekeydir": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/private_keys",
+        "path_exists": true
+      },
+      "publickeydir": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/public_keys",
+        "path_exists": true
+      },
+      "certdir": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/certs",
+        "path_exists": true
+      },
+      "requestdir": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/certificate_requests",
+        "path_exists": true
+      },
+      "hostcrl": {
+        "path": "C:/ProgramData/PuppetLabs/puppet/etc/ssl/crl.pem",
+        "path_exists": true
+      }
+    },
+    "puppet_stringify_facts": false,
+    "puppet_vardir": "C:/ProgramData/PuppetLabs/puppet/cache",
+    "puppetversion": "5.5.2",
+    "ruby": {
+      "platform": "x64-mingw32",
+      "sitedir": "C:/Program Files/Puppet Labs/Puppet/sys/ruby/lib/ruby/site_ruby/2.4.0",
+      "version": "2.4.4"
+    },
+    "rubyplatform": "x64-mingw32",
+    "rubysitedir": "C:/Program Files/Puppet Labs/Puppet/sys/ruby/lib/ruby/site_ruby/2.4.0",
+    "rubyversion": "2.4.4",
+    "serialnumber": "ec258845-c78e-e2bc-2106-837afc4f0690",
+    "service_provider": "windows",
+    "sqlserver_features": {
+      "SQL_2012": [
+
+      ],
+      "SQL_2014": [
+
+      ],
+      "SQL_2016": [
+
+      ],
+      "SQL_2017": [
+
+      ]
+    },
+    "sqlserver_instances": {
+      "SQL_2012": {
+      },
+      "SQL_2014": {
+      },
+      "SQL_2016": {
+      },
+      "SQL_2017": {
+      }
+    },
+    "staging_http_get": "curl",
+    "system32": "C:\\Windows\\system32",
+    "system_uptime": {
+      "days": 0,
+      "hours": 3,
+      "seconds": 11676,
+      "uptime": "3:14 hours"
+    },
+    "timezone": "Coordinated Universal Time",
+    "uptime": "3:14 hours",
+    "uptime_days": 0,
+    "uptime_hours": 3,
+    "uptime_seconds": 11676,
+    "vcsrepo_svn_ver": "",
+    "virtual": "xen",
+    "clientcert": "win-kckn7rld4q3.ap-southeast-2.compute.internal",
+    "clientversion": "5.5.2",
+    "clientnoop": false
+  },
+  "timestamp": "2018-10-08T03:49:12.974435000+00:00",
+  "expiration": "2018-10-08T04:19:12.974435000+00:00"
+}

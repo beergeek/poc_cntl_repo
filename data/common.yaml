@@ -1,0 +1,465 @@
+---
+# Variables
+variables:
+  - &enable_firewall true
+  - &manage_heira false
+  - &manage_eyaml false
+
+profile::base::noop_scope: false
+profile::dns::noop_scope: false
+profile::fw::noop_scope: false
+profile::logging::noop_scope: false
+profile::monitoring::noop_scope: false
+profile::repos::noop_scope: false
+profile::ssh::noop_scope: false
+profile::sudo::noop_scope: false
+profile::time_locale::noop_scope: false
+
+
+# DNS
+profile::dns::name_servers:
+  - 10.240.0.10
+  - 10.240.1.10
+profile::dns::purge: false
+
+# SSH
+profile::ssh::enable_firewall: *enable_firewall
+profile::ssh::banner_content: "This system is the property of Puppet. Unauthorised access is not permitted"
+profile::ssh::allowed_groups:
+  - 'root'
+  - 'vagrant'
+  - 'centos'
+  - 'ubuntu'
+  - 'ec2-user'
+profile::ssh::options_hash:
+  Port: 22
+  AcceptEnv: 'LANG LC_*'
+  ChallengeResponseAuthentication: no
+  PermitRootLogin: no
+  PrintMotd: yes
+  Subsystem: 'sftp /usr/libexec/openssh/sftp-server'
+  UsePAM: yes
+  X11Forwarding: yes
+  RSAAuthentication: yes
+  PubkeyAuthentication: yes
+  PasswordAuthentication: no
+  UseDNS: no
+
+# SUDO
+profile::sudo::sudo_hash:
+  ubuntu:
+    priority: 10
+    content: '%ubuntu ALL=(ALL) NOPASSWD: ALL'
+  centos:
+    priority: 10
+    content: '%centos ALL=(ALL) NOPASSWD: ALL'
+  vagrant:
+    priority: 10
+    content: '%vagrant ALL=(ALL) NOPASSWD: ALL'
+  ec2-user:
+    priority: 10
+    content: 'ec2-user ALL=(ALL) NOPASSWD: ALL'
+profile::sudo::sudo_hash_defaults:
+  priority: 50
+profile::sudo::sudo_purge: true
+profile::sudo::sudo_replace_config: true
+
+# LOGGING
+profile::logging::rsyslog_data:
+  log_local: true
+  port: 514
+  remote_servers: false
+  remote_type: 'tcp'
+profile::logging::logrotate_client_data:
+  rotate: 10
+  rotate_every: 'day'
+  size: '200k'
+
+# COM
+profile::com::enable_firewall: *enable_firewall
+profile::com::firewall_rules:
+  '010 Puppet Port 8140':
+    dport: '8140'
+  '010 PE Orchestrator 8142':
+    dport: '8142'
+profile::com::hiera_eyaml_pub: >
+  ENC[PKCS7,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]
+profile::com::hiera_eyaml_priv: >
+  ENC[PKCS7,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
+  oasdgjbKFY+NVWCqWpN+DnhSYFRQRPSq]
+
+
+# MOM
+profile::mom::enable_firewall: *enable_firewall
+profile::mom::hiera_eyaml_pub: >
+  ENC[PKCS7,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]
+profile::mom::hiera_eyaml_priv: >
+  ENC[PKCS7,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
+  oasdgjbKFY+NVWCqWpN+DnhSYFRQRPSq]
+profile::mom::autosign_secret: >
+  ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAjEwNoWm0T4bQ1y/B2fC67V/3tbyTk5zyMsN8
+  rzKJt+Oo3AmOm5zq09oMUmg1Zmr6MuvjlvPoi305jdATo6vsJ02N8f6u9dhw
+  +AsQc8UpN9VGZqqHYiQqx8vDyPNpbXLK+0f95VuHlVS9F2KbNzP//WoNK3A5
+  4Vx/R1gmnLHILt6OAqewPTCn4o+MSH8LMQ8MPzU0+aaivS6hE3rBNnPH4xHW
+  jh+ZdC/tnU4CPPmLPtIJLW5MROSJF+2DmP/D28bb5BLhZKfTCnMgICGsDOG0
+  fhnYpx1MbbXDZZNYIhTLEdL9bxDKUJrLDJiX0eWMzC1f5fmzJXU7N+SMNbys
+  mFw7WzBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBC135sIJD1/Y76JEPwB
+  vMJPgCB/+WQdGL316RDJdLKzVtHuODhSJuHmqftpNdtLGSvDWg==]
+profile::mom::firewall_rules:
+  '010 Puppet Port 8140':
+    dport: '8140'
+  '010 Puppet Code Manager 8170':
+    dport: '8170'
+  '010 PuppetDB 8081':
+    dport: '8081'
+  '010 Puppet Console 443':
+    dport: '443'
+  '010 Puppet Postgresql 5432':
+    dport: '5432'
+  '010 Puppet Classifier 4433':
+    dport: '4433'
+  '010 PE Orchestrator 8142':
+    dport: '8142'
+  '010 PE Orchestrator 8143':
+    dport: '8143'
+profile::mom::firewall_rule_defaults:
+  proto: 'tcp'
+  action: 'accept'
+#  before: "Class['profile::fw::post']"
+#  require: "Class['profile::fw::pre']"
+
+# Load Balancer
+profile::lb_services::haproxy::enable_firewall: *enable_firewall
+profile::lb_services::haproxy::listeners:
+  stats:
+    collect_exported: false
+    ports: '9090'
+    options:
+      mode: 'http'
+      stats: ['uri /', 'auth puppet:puppet']
+  puppet00:
+    collect_exported: true
+    ports: '8140'
+    options:
+      mode: 'tcp'
+  pcp00:
+    collect_exported: true
+    ports: '8142'
+    options:
+      mode: 'tcp'
+      balance: 'source'
+profile::lb_services::haproxy::frontends:
+  http00:
+    ports: '80'
+    mode: 'http'
+    options:
+      default_backend: 'rob.puppet.vm'
+      bind: ':80'
+      option:
+        - httplog
+      log: global
+      acl:
+        - 'is_rob_puppet_vm hdr_dom(host) -i rob.puppet.vm'
+        - 'is_animal_puppet_vm hdr_dom(host) -i animal.puppet.vm'
+        - 'is_kermit_puppet_vm hdr_dom(host) -i kermit.puppet.vm'
+        - 'is_elmo_puppet_vm hdr_dom(host) -i elmo.puppet.vm'
+      use_backend:
+        - 'rob.puppet.vm if is_rob_puppet_vm'
+        - 'animal.puppet.vm if is_animal_puppet_vm'
+        - 'kermit.puppet.vm if is_kermit_puppet_vm'
+        - 'elmo.puppet.vm if is_elmo_puppet_vm'
+profile::lb_services::haproxy::backends:
+  rob.puppet.vm:
+    mode: 'http'
+    collect_exported: true
+    options:
+      option:
+        - 'forwardfor'
+        - 'httpclose'
+        - 'httpchk GET /index.html HTTP/1.1\r\nHOST:\ rob.puppet.vm'
+      balance: 'roundrobin'
+      reqirep: '^Host:   Host:\ rob.puppet.vm'
+  animal.puppet.vm:
+    mode: 'http'
+    collect_exported: true
+    options:
+      option:
+        - 'forwardfor'
+        - 'httpclose'
+        - 'httpchk GET /index.html HTTP/1.1\r\nHOST:\ animal.puppet.vm'
+      balance: 'roundrobin'
+      reqirep: '^Host:   Host:\ animal.puppet.vm'
+  kermit.puppet.vm:
+    mode: 'http'
+    collect_exported: true
+    options:
+      option:
+        - 'forwardfor'
+        - 'httpclose'
+        - 'httpchk GET /index.html HTTP/1.1\r\nHOST:\ kermit.puppet.vm'
+      balance: 'roundrobin'
+      reqirep: '^Host:   Host:\ kermit.puppet.vm'
+  elmo.puppet.vm:
+    mode: 'http'
+    collect_exported: true
+    options:
+      option:
+        - 'forwardfor'
+        - 'httpclose'
+        - 'httpchk GET /index.html HTTP/1.1\r\nHOST:\ elmo.puppet.vm'
+      balance: 'roundrobin'
+      reqirep: '^Host:   Host:\ elmo.puppet.vm'
+
+# BASE
+profile::base::enable_firewall: *enable_firewall
+profile::base::wsus_server: 'http://wsus_server.local'
+profile::base::wsus_server_port: '8530'
+
+# TIME_LOCALE
+profile::time_locale::ntp_servers:
+  - 0.au.pool.ntp.org
+  - 1.au.pool.ntp.org
+  - 2.au.pool.ntp.org
+  - 3.au.pool.ntp.org
+profile::time_locale::timezone: 'UTC'
+profile::time_locale::locale_rhel: 'en_AU.utf8'
+profile::time_locale::locale_deb: 'en_AU.UTF-8'
+profile::time_locale::lang_pack:
+  - language-pack-ja-base
+  - language-pack-ja
+
+profile::base::sysctl_settings:
+  kernel.msgmnb:
+    value : '65536'
+  kernel.msgmax:
+    value : '65536'
+  kernel.shmmax:
+    value : '2588483584'
+  kernel.shmall:
+    value : '2097152'
+  fs.file-max:
+    value : '6815744'
+  net.ipv4.tcp_keepalive_time:
+    value : '1800'
+  net.ipv4.tcp_keepalive_intvl:
+    value : '30'
+  net.ipv4.tcp_keepalive_probes:
+    value : '5'
+  net.ipv4.tcp_fin_timeout:
+    value : '30'
+  kernel.shmmni:
+    value : '4096'
+  fs.aio-max-nr:
+    value : '1048576'
+  kernel.sem:
+    value : '250 32000 100 128'
+  net.ipv4.ip_local_port_range:
+    value : '9000 65500'
+  net.core.rmem_default:
+    value : '262144'
+  net.core.rmem_max:
+    value : '4194304'
+  net.core.wmem_default:
+    value : '262144'
+  net.core.wmem_max:
+    value : '1048576'
+profile::base::sysctl_defaults:
+  ensure: present
+  permanent: 'yes'
+
+profile::web_services::apache::website_defaults:
+  port: '80'
+  priority: '10'
+
+profile::base::cacerts:
+  atlassian_stack.pem:
+      -----BEGIN CERTIFICATE-----
+    MIIFljCCA36gAwIBAgIJAPgjt937aEaGMA0GCSqGSIb3DQEBCwUAMFgxCzAJBgNV
+    BAYTAkFVMQwwCgYDVQQIDANOU1cxDDAKBgNVBAcMA1NZRDEPMA0GA1UECgwGUHVw
+    cGV0MQswCQYDVQQLDAJDUzEPMA0GA1UEAwwGUHVwcGV0MB4XDTE4MDgwNjA1MjU1
+    MVoXDTM4MDgwMTA1MjU1MVowWDELMAkGA1UEBhMCQVUxDDAKBgNVBAgMA05TVzEM
+    MAoGA1UEBwwDU1lEMQ8wDQYDVQQKDAZQdXBwZXQxCzAJBgNVBAsMAkNTMQ8wDQYD
+    VQQDDAZQdXBwZXQwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCi463s
+    BQT1wVRnwhYOb/oEhL/lsLnkpXB1JqBj0jMDNr453DgF3y64UM/xzvUzo57Qwq/i
+    umy2nMwHN0G2HGWHVoDGJUMVnP9hPuGM9fGydQV2DJVsItjXhVW0is9rjDuiS3fH
+    NVuBCwPCorRu0Fdz7T2L5DcNLURq9sqrxV9VvFCWlBI6L35ga7T1MGNvbJOe1GKO
+    g+UzYnmxLXJIjf5vso6YSF5m7SQoej93DP7jzkswebOLkiHvB1kLGsjIwRE3MKM6
+    0BI+CeQhgGE8ggo2IUoJs1sdta2cplNhhTMcTZah8T3D/I0g3AGHfb1k2mRipAui
+    Pa1Ww03iwfLvNioAMZV1oD+J1Hv0Ljl+VE4k7hpWnzOtjP3W0cvCYDOEhLx3ryzs
+    takYHcHUWV0cx9LvpZZWlKWMi6XpSfJJz02Nflh2GGe9GAi8U8nUzJNgz3kQQ882
+    axHJ/NaNtfxvNHCyg/1GY438ZBYi/yL2tezXZIlMjlaBvoseGJIW0EH2geiyNUJb
+    +qru3G4pjv370g7Vn2Csz977ePGswMgRBAVKw/G4s198f/eqSLafy7ZasT3ua/sE
+    U5y5K2bgItNrdTIyqvOlIl6qmZcscgZvQbHZPX6+fSzH3VcJuD19Y0KjpegbZi6K
+    PAsB1WwebBJJQupiRzqD9X4Awrx9pHjljqOC9QIDAQABo2MwYTAdBgNVHQ4EFgQU
+    I61i2y6LHfuptz147fJLksjiAbowHwYDVR0jBBgwFoAUI61i2y6LHfuptz147fJL
+    ksjiAbowDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAYYwDQYJKoZIhvcN
+    AQELBQADggIBACV6umcb0iTmENGwAjC6/eSie+lq0JAkiZdO6zpEsF6Y1aW9lOCx
+    QH0/NCuwPyxYnLGSrhStQ7sh36sEtgr+LuPP5VfICMVVyGnxQHNBIG4y1vozK6am
+    gXI7X+jyCFMoy5B8h+hUTEjyZTt7UCd7GuDx3RuJ7gAio1zZOj9IDmxzjl2S0TJG
+    llEgTMw4a6ZE3hSjTj9Cz4h+3xuU/zUic6vctPEdoVvCQDf7VS+2irS1l0Q2DTLI
+    8wSpFfpKHZ5CO3VwokMLTR1ECSS/w6Xpuznl7zPYWDGIT15h1rueFAtZiFSFZpa1
+    236oM9mf7/CmqY5XzdPG5X0RS7dpE2V/tF9dYZVlvXPFQOtFqQ7ri3a6dGFSFi2u
+    vjH5ndlAVGNe3saVaaYCwCwdYApW2pibTPNFcDQ7dxYx62TaL5PTLlo6HymPfCfx
+    wl6TmjWuNLCs/dGM37rxPb7kZPpi0JiifubgBgBB2aHKd8Sw9SioQfXQ1yU1ISuV
+    l54Kyg3MIVEjDmdHTsDyRBkAVKn/XFUpddCr8tJomzyqj40WsF9SLnag1oW+J0q7
+    rGeQ+iQOKm08w47EJfNqlv+lYz+JXBOWjvwIxTDfxSwGa9/zgzfC7gVswd6J5F1n
+    P2HFISsIsna8YafGxyavB4nZZrVRTXfCqT2SmBRnrzZgdJnQxoU42dxN
+    -----END CERTIFICATE-----
+
+profile::wsus_services::server_url: 'http://wsus.puppet.vm:8530'
+profile::tomcat_services::tomcat_installs:
+  '/opt/tomcat9':
+    source_url: 'http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.12/bin/apache-tomcat-9.0.12.tar.gz'
+  '/opt/tomcat7':
+    source_url: 'http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.91/bin/apache-tomcat-7.0.91.tar.gz'

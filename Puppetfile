@@ -62,27 +62,9 @@ mod "trlinkin/noop", :latest
 
 mod 'node_manager',
   :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
-mod 'bamboo',
-  :git => 'https://github.com/beergeek/bamboo.git',
-  :branch => 'master'
 mod 'terminate',
   :git => 'https://github.com/beergeek/terminate.git',
   :branch => 'master'
-mod 'install_date',
-  :git => 'https://github.com/beergeek/install_date.git',
-  :branch => 'master'
-mod 'bbs',
-  :git => 'https://github.com/beergeek/bbs.git',
-  :branch => 'master'
 mod 'os_updates',
   :git => 'https://github.com/beergeek/os_updates.git',
-  :branch => 'master'
-mod 'stdlib',
-  :git => 'ssh://git@bbs.puppet.vm:7999/pup/puppetlabs-stdlib.git',
-  :tag => '5.1.0'
-mod 'sqlserver',
-  :git => 'ssh://git@bbs.puppet.vm:7999/pup/puppetlabs-sqlserver.git',
-  :tag => '2.1.1'
-mod 'jira',
-  :git => 'ssh://git@bbs.puppet.vm:7999/pup/beergeek-jira.git',
   :branch => 'master'

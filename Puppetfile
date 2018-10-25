@@ -46,6 +46,7 @@ mod "puppetlabs/puppet_metrics_collector", :latest
 mod "puppetlabs/reboot", :latest
 mod "puppetlabs/registry", :latest
 mod "puppetlabs/ruby", :latest
+mod "puppetlabs/stdlib", :latest
 mod "puppetlabs/tomcat", :latest
 mod "puppetlabs/vcsrepo", :latest
 mod "puppetlabs/wsus_client", :latest

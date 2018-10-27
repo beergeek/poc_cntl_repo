@@ -1,8 +1,8 @@
 define pe_node_group (
-  $classes,
-  $rule = undef,
   $parent,
+  $classes            = undef ,
   $environment_trumps = undef,
-  $pinned = undef,
-  $refresh_classes = true,
+  $pinned             = undef,
+  $refresh_classes    = true,
+  $rule               = undef,
 ) {}

@@ -7,9 +7,6 @@ classes:
   - role::monitor_server
   - role::replica
   - role::web_server
-  - role::bamboo_server
-  - role::jira_server
-  - role::bbs_server
   - role::pfa_server
   - role::tomcat_server
 
@@ -18,9 +15,7 @@ classes:
 nodes:
   - CentOS-6.6-64
   - CentOS-7.0-64
-  - bbs.puppet.vm
   - pfa0.puppet.vm
-  - jira.puppet.vm
   - windows2102r2
   - tomcat_server
   - web_server
@@ -54,12 +49,6 @@ class_groups:
 test_matrix:
   - general_nodes:
       classes: 'general'
-      tests: 'spec'
-  - bbs.puppet.vm:
-      classes: 'role::bbs_server'
-      tests: 'spec'
-  - jira.puppet.vm:
-      classes: 'role::jira_server'
       tests: 'spec'
   - pfa0.puppet.vm:
       classes: 'role::pfa_server'

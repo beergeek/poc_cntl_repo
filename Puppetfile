@@ -63,10 +63,10 @@ mod "stahnma-epel", :latest
 mod "trlinkin-noop", :latest
 
 mod 'node_manager',
-  :git => 'https://github.com-puppetlabs-prosvcs-node_manager.git'
+  :git => 'https://github.com/puppetlabs/prosvcs-node_manager.git'
 mod 'terminate',
-  :git => 'https://github.com-beergeek-terminate.git',
+  :git => 'https://github.com/beergeek/terminate.git',
   :branch => 'master'
 mod 'os_updates',
-  :git => 'https://github.com-beergeek-os_updates.git',
+  :git => 'https://github.com/beergeek/os_updates.git',
   :branch => 'master'

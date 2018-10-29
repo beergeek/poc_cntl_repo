@@ -12,6 +12,14 @@ class profile::time_locale (
   }
 
   if $os['family'] == 'redhat' {
+
+    file { '/etc/sysconfig/i18mn':
+      ensure => directory,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
+
     file { '/etc/sysconfig/i18n':
       ensure => file,
       owner  => 'root',

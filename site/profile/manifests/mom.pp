@@ -124,8 +124,7 @@ class profile::mom (
 
   pe_node_group { 'MoM Server':
     parent             => 'Classification Node Groups',
-    pinned             => ["mom.puppet.vm"],
-    rule               => {},
+    pinned             => ['mom.puppet.vm'],
     classes            => {
       role::mom_server => {},
     }

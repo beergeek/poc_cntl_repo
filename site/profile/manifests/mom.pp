@@ -138,6 +138,22 @@ class profile::mom (
     }
   }
 
+  pe_node_group { 'DB Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_role"],"db_server"]],
+    classes => {
+      role::com_server => {},
+    }
+  }
+
+  pe_node_group { 'Web Server':
+    parent  => 'Classification Node Groups',
+    rule    => ["and",["=",["trusted","extensions","pp_role"],"web_server"]],
+    classes => {
+      role::com_server => {},
+    }
+  }
+
   pe_node_group { 'CD4PE Server':
     parent  => 'Classification Node Groups',
     rule    => ["and",["=",["trusted","extensions","pp_role"],"cd4pe_server"]],

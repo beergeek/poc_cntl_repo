@@ -18,11 +18,16 @@ class profile::database_services::mysql (
   }
 
   class { '::mysql::server':
-    * => $mysql_server_override_data,
+    remove_default_accounts => true,
+    *                       => $mysql_server_override_data,
   }
 
   class {'::mysql::bindings':
     php_enable => true,
+  }
+
+  mysql_database { 'test':
+    ensure => absent,
   }
 
   if $db_hash and ! empty($db_hash) {

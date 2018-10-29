@@ -12,4 +12,13 @@ profile::database_services::mysql::mysql_server_override_options:
       bind-address: '0.0.0.0'
       default-storage-engine: 'INNODB'
       max_allowed_packet: '2G'
-
+  root_password: >
+    ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAFcaLQIK2kzc34mSefFP9CIQ67XYGiu66t48C
+    cAgoitsXjrh8WeV9jrU9kuEkzuNZAA/JupBwB1TuBMMjyXFniYUa1uc8OE+Q
+    XP152bfKCRyMwYvjFovVIGMvbNf0Vt78TtByrZ/OFynZ7ymaeCbgQDqYBvZ9
+    kL1GLahq8xPn11ISGp7Ns6DRvxETbRUYdyO4iUC/m+fs/ky+bVETtII57m15
+    MpMqOurRk0In5j7I1fzX9xMU8BaQAtVkPgZWTK9iKzOBgsgRGGZudLzUTdCk
+    DAwLojbkLonPsMMwa2aLOQQ1itG4CAlNvXAFmGGdTj1SU9lF9/evIXY8BmZP
+    lvA6NjA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBAscAlQvux1lkX82mbq
+    nDQhgBCFJ/wA4y5VmAFuagkXmOr6]

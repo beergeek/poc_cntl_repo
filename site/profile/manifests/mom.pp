@@ -14,7 +14,7 @@ class profile::mom (
   Boolean               $initial_setup           = false,
   Boolean               $development_env         = true,
   Boolean               $test_env                = true,
-  Boolen                $staging_env             = true,
+  Boolean               $staging_env             = true,
   Optional[String]      $hiera_eyaml_priv        = undef,
   Optional[String]      $hiera_eyaml_pub         = undef,
   Stdlib::Absolutepath  $hiera_eyaml_priv_name   = '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem',

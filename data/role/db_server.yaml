@@ -1,5 +1,8 @@
 ---
 
+lookup_options:
+  profile::database_services::mysql::mysql_server_override_options::root_password:
+    convert_to: "Sensitive"
 # Variables
 variables:
   - &enable_firewall true

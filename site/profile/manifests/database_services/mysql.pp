@@ -26,10 +26,6 @@ class profile::database_services::mysql (
     php_enable => true,
   }
 
-  mysql_database { 'test':
-    ensure => absent,
-  }
-
   if $db_hash and ! empty($db_hash) {
     $db_hash.each |String $database_name, Hash $database_hash| {
       mysql::db {  $database_name:

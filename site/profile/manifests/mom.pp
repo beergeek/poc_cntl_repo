@@ -11,6 +11,10 @@ class profile::mom (
   String                $autosign_validity       = '7200',
   String                $pe_infra_master         = $server_facts['servername'],
   Boolean               $enable_firewall         = true,
+  Boolean               $initial_setup           = false,
+  Boolean               $development_env         = true,
+  Boolean               $test_env                = true,
+  Boolen                $staging_env             = true,
   Optional[String]      $hiera_eyaml_priv        = undef,
   Optional[String]      $hiera_eyaml_pub         = undef,
   Stdlib::Absolutepath  $hiera_eyaml_priv_name   = '/etc/puppetlabs/puppet/ssl/private_key.pkcs7.pem',
@@ -75,33 +79,41 @@ class profile::mom (
     classes         => {},
   }
 
-  #pe_node_group { 'Production environment':
-  #  parent             => 'Environmental Node Groups',
-  #  environment_trumps => true,
-  #  rule               => ["and",["not",["=",["trusted","extensions","pp_environment"],"staging"]],["not",["=",["trusted","extensions","pp_environment"],"test"]],["not",["=",["trusted","extensions","pp_environment"],"development"]]],
-  #  classes            => {},
-  #}
+  if $initial_setup {
+    pe_node_group { 'Production environment':
+      parent             => 'Environmental Node Groups',
+      environment_trumps => true,
+      rule               => ["and",["not",["=",["trusted","extensions","pp_environment"],"staging"]],["not",["=",["trusted","extensions","pp_environment"],"test"]],["not",["=",["trusted","extensions","pp_environment"],"development"]]],
+      classes            => {},
+    }
 
-  #pe_node_group { 'Staging environment':
-  #  parent             => 'Environmental Node Groups',
-  #  environment_trumps => true,
-  #  rule               => ["and",["=",["trusted","extensions","pp_environment"],"staging"]],
-  #  classes            => {},
-  #}
+    if $staging_env {
+      pe_node_group { 'Staging environment':
+        parent             => 'Environmental Node Groups',
+        environment_trumps => true,
+        rule               => ["and",["=",["trusted","extensions","pp_environment"],"staging"]],
+        classes            => {},
+      }
+    }
 
-  #pe_node_group { 'Test environment':
-  #  parent             => 'Environmental Node Groups',
-  #  environment_trumps => true,
-  #  rule               => ["and",["=",["trusted","extensions","pp_environment"],"test"]],
-  #  classes            => {},
-  #}
+    if $test_env {
+      pe_node_group { 'Test environment':
+        parent             => 'Environmental Node Groups',
+        environment_trumps => true,
+        rule               => ["and",["=",["trusted","extensions","pp_environment"],"test"]],
+        classes            => {},
+      }
+    }
 
-  #pe_node_group { 'Development environment':
-  #  parent             => 'Environmental Node Groups',
-  #  environment_trumps => true,
-  #  rule               => ["and",["=",["trusted","extensions","pp_environment"],"development"]],
-  #  classes            => {},
-  #}
+    if $development_env {
+      pe_node_group { 'Development environment':
+        parent             => 'Environmental Node Groups',
+        environment_trumps => true,
+        rule               => ["and",["=",["trusted","extensions","pp_environment"],"development"]],
+        classes            => {},
+      }
+    }
+  }
 
   pe_node_group { 'Agent-specified environment':
     parent => 'Environmental Node Groups',

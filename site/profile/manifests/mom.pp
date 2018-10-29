@@ -154,7 +154,7 @@ class profile::mom (
     parent  => 'Classification Node Groups',
     rule    => ["and",["=",["trusted","extensions","pp_role"],"db_server"]],
     classes => {
-      role::com_server => {},
+      role::db_server => {},
     }
   }
 
@@ -162,7 +162,7 @@ class profile::mom (
     parent  => 'Classification Node Groups',
     rule    => ["and",["=",["trusted","extensions","pp_role"],"web_server"]],
     classes => {
-      role::com_server => {},
+      role::web_server => {},
     }
   }
 

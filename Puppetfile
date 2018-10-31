@@ -1,8 +1,7 @@
 forge "http://forgeapi.puppetlabs.com"
 
 # Modules from the Puppet Forge
-#mod "puppetlabs-sqlserver", :latest
-#mod "puppetlabs-stdlib", :latest
+mod 'beergeek-active_directory', :latest
 mod 'beergeek-disable_noop', :latest
 mod 'beergeek-enable_noop', :latest
 mod 'beergeek-facecount', :latest

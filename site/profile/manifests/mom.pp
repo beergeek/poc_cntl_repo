@@ -252,3 +252,4 @@ class profile::mom (
     fail('Hiera-eyaml requires both the private and public keys')
   }
 }
+

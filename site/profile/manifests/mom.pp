@@ -121,7 +121,7 @@ class profile::mom (
 
   pe_node_group { 'PE Infrastructure':
     parent  => 'Classification Node Groups',
-    refresh_classes => true,
+    refresh_classes => false,
     classes => {
       'puppet_enterprise' => {
         'certificate_authority_host' => $pe_infra_master,

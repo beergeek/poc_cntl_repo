@@ -4,7 +4,7 @@ class profile::mom (
   Optional[Hash]        $firewall_rules          = {},
   Optional[String]      $eyaml_priv_key          = undef,
   Optional[String]      $eyaml_pub_key           = undef,
-  Profile::Cron_h       $backup_cron_hour        = 1,
+  Profile::Cron_h       $backup_cron_hour        = 2,
   Profile::Cron_min     $backup_cron_minute      = 0,
   Profile::Cron_wd      $backup_cron_weekday     = '*',
   String                $autosign_loglevel       = 'INFO',
